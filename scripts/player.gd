@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var _animation_player: AnimatedSprite2D = $AnimatedSprite2D
+const MyProjectile  = preload("res://scenes/coin.tscn")
 
 var xSpeed = 300.0
 var xDirection = 0
@@ -9,7 +10,7 @@ var yDirection = 0
 var coins = 0
 var health = 100
 var max_health =100
-
+var fireball = 10
 
 # TODO: Add health system variables
 # var health = ?
@@ -27,10 +28,11 @@ func _physics_process(_delta):
 	# - When RIGHT is pressed: returns 1.0  
 	# - When NOTHING is  pressed: returns 0.0
 	xDirection = Input.get_axis("ui_left", "ui_right")
-	print("Player Health: ", health)
+	#print("Player Health: ", health)
 	# TODO: Print the direction to see what number we get
 	# This will help us understand what's happening
 	# Type this exactly: print("X Direction: ", xDirection)
+	
 	
 	
 	# TODO: Get vertical input (up/down keys)  
@@ -46,6 +48,7 @@ func _physics_process(_delta):
 	# If direction is 1 and speed is 300, we get 300 pixels right
 	# If direction is -1 and speed is 300, we get -300 pixels (left)
 	# Type this exactly: var velocity.y = xDirection * xSpeed
+	
 	
 	
 	# TODO: Calculate Y movement the same way
@@ -75,6 +78,9 @@ func _physics_process(_delta):
 		facing = "down"
 	elif yDirection <0:
 		facing = "up"
+		  
+	if Input.is_action_just_pressed("ui_select"):
+		shoot()
 	
 	
 	# TODO: Update animation based on facing direction
@@ -123,10 +129,13 @@ func change_health(amount):
 
 # TODO: Create shooting function
 func shoot():
+	print("shot fired")
+	
 	# TODO: Create a new projectile instance
 	# Look at the documentation examples in the lesson
-	
-	
+	var new_instance = MyProjectile.instantiate()
+	get_parent().add_child(new_instance)
+	#new_instance.velocity
 	# TODO: Set projectile position to player position
 	# Look at the "Setting Object Position" example
 	
