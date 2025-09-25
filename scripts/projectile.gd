@@ -14,7 +14,7 @@ var speed = 200
 func _physics_process(_delta):
 	# TODO: Calculate movement using direction and speed
 	# Similar to player movement: 
-	position = direction * speed * _delta
+	position += direction * speed * _delta
 	
 	
 	

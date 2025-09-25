@@ -27,7 +27,7 @@ func _physics_process(_delta):
 	# - When LEFT is pressed: returns -1.0
 	# - When RIGHT is pressed: returns 1.0  
 	# - When NOTHING is  pressed: returns 0.0
-	xDirection = Input.get_axis("ui_left", "ui_right")
+	xDirection = Input.get_axis("ui_left", "ui_right") 
 	#print("Player Health: ", health)
 	# TODO: Print the direction to see what number we get
 	# This will help us understand what's happening
