@@ -14,20 +14,24 @@ func _ready():
 	# Look at "Working with Timers" documentation
 	pass
 
-func _on_detection_area_body_entered(_body):
+func _on_detection_area_body_entered(body):
 	# TODO: Check if the body is the player
 	# Update player detection state
 	# Look at "Boolean Variables and State Tracking" documentation
-	if _body.name == "player":
-		print ("turret fired")
-		
-	pass
+	  if body.name == "Player":
+		player_in_range = true
+		print("Player detected!")
+pass
 
 
 func _on_detection_area_body_exited(_body):
 	# TODO: Check if the body is the player  
 	# Update player detection state
 	# Look at "Boolean Variables and State Tracking" documentation
+	if body.name == "Player":
+		player_in_range = false
+	print("Player lost!")
+
 	pass
 
 func _on_shooting_timer_timeout():
