@@ -1,14 +1,17 @@
 extends CharacterBody2D
 @onready var _animation_player: AnimatedSprite2D = $AnimatedSprite2D
 var projectile_original = preload("res://scenes/projectile.tscn")
-
 var xSpeed = 300.0
 var xDirection = 0
 var facing = "down"
 var ySpeed = 300.0
 var yDirection = 0
 var coins = 0
+var is_attacking = false
+var attack_timer = .67
+var current_enemy 
 @export var offset : Vector2 = Vector2(0, -25)
+@onready var melee_box: CollisionShape2D = $"melee/player meleebox"
 
 # TODO: Add health system variables
 var maxHealth = 10
@@ -38,17 +41,40 @@ func _physics_process(_delta):
 	# TODO: Update facing direction based on movement
 	if xDirection > 0:
 		facing = "right"
+		melee_box.positon = Vector2(30,0)
 	elif xDirection < 0:
 		facing = "left"
+		melee_box.positon = Vector2(-30,0)
 	elif yDirection < 0:
 		facing = "up"
+		melee_box.positon = Vector2(0,-45)
 	elif yDirection > 0:
 		facing = "down"
-	
+		melee_box.positon = Vector2(0,30)
+		
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
 	
-	# call the animation function
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		is_attacking = true
+	
+	
+	
+	if is_attacking:
+		attack_timer -= _delta
+		if attack_timer<0:
+			is_attacking=false
+			attack_timer = .67
+	
+	if current_enemy != null and is_attacking: 
+		print ("attack")
+		current_enemy.queue_free()
+	
+	
+	
+	
+	# call the animation functio 
 	update_animation()
 	
 	
@@ -99,5 +125,20 @@ func shoot():
 	
 	# TODO: Add projectile to the game world
 	get_tree().get_root().add_child(projectile_clone)
-
 	pass
+	
+	
+
+
+
+func _on_melee_body_entered(body: Node2D) -> void:
+	print (body.name)
+	
+	if body.is_in_group("enemy"):
+		current_enemy = body
+
+
+func _on_melee_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
+	if body.is_in_group("enemy"):
+		current_enemy=null
