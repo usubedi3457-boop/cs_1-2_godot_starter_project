@@ -11,7 +11,8 @@ var is_attacking = false
 var attack_timer = .67
 var current_enemy 
 @export var offset : Vector2 = Vector2(0, -25)
-@onready var melee_box: CollisionShape2D = $"melee/player meleebox"
+
+@onready var melee_box: Area2D = $melee
 
 # TODO: Add health system variables
 var maxHealth = 10
@@ -41,16 +42,16 @@ func _physics_process(_delta):
 	# TODO: Update facing direction based on movement
 	if xDirection > 0:
 		facing = "right"
-		melee_box.positon = Vector2(30,0)
+		melee_box.position = Vector2(30,0)
 	elif xDirection < 0:
 		facing = "left"
-		melee_box.positon = Vector2(-30,0)
+		melee_box.position = Vector2(-30,0)
 	elif yDirection < 0:
 		facing = "up"
-		melee_box.positon = Vector2(0,-45)
+		melee_box.position = Vector2(0,-45)
 	elif yDirection > 0:
 		facing = "down"
-		melee_box.positon = Vector2(0,30)
+		melee_box.position = Vector2(0,30)
 		
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
@@ -83,15 +84,17 @@ func _physics_process(_delta):
 
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
-	# TODO: Set the animation based on the facing direction
-	if velocity.is_zero_approx():
-		_animation_player.play("idle_" + facing)
-	# This combines "idle_" with whatever direction we're facing
-		pass
-	elif !velocity.is_zero_approx():
+	if is_attacking:
+		_animation_player.play("attack_"+ facing)
+	else:
+			# TODO: Set the animation based on the facing direction
+		if velocity.is_zero_approx():
+			_animation_player.play("idle_" + facing)
+
+		elif !velocity.is_zero_approx():
 		#walking animation here
-		_animation_player.play("walk_" + facing)
-		pass
+			_animation_player.play("walk_" + facing)
+
 		
 	
 
