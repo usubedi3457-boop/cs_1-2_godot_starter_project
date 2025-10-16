@@ -5,7 +5,7 @@ var xSpeed = 300.0
 var xDirection = 0
 var facing = "down"
 var ySpeed = 300.0
-var yDirection = 0
+var yDirection = 0 
 var coins = 0
 var is_attacking = false
 var attack_timer = .67
@@ -20,7 +20,7 @@ var health = maxHealth
 
 func _ready() -> void:
 	pass
-
+ 
 func _physics_process(_delta):
 	# TODO: Get horizontal input (left/right keys)
 	# Input.get_axis checks two keys and gives us a number:
