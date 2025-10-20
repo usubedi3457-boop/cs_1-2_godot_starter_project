@@ -10,6 +10,10 @@ var coins = 0
 var is_attacking = false
 var attack_timer = .67
 var current_enemy 
+var lever1 = false
+var lever2 = false
+var lever0 = false
+var on 
 @export var offset : Vector2 = Vector2(0, -25)
 
 @onready var melee_box: Area2D = $melee
@@ -46,7 +50,7 @@ func _physics_process(_delta):
 	elif xDirection < 0:
 		facing = "left"
 		melee_box.position = Vector2(-30,0)
-	elif yDirection < 0:
+	elif yDirection < 0: 
 		facing = "up"
 		melee_box.position = Vector2(0,-45)
 	elif yDirection > 0:
@@ -71,6 +75,10 @@ func _physics_process(_delta):
 	if current_enemy != null and is_attacking: 
 		print ("attack")
 		current_enemy.queue_free()
+		
+		
+	
+		
 	
 	
 	
@@ -145,3 +153,5 @@ func _on_melee_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
 	if body.is_in_group("enemy"):
 		current_enemy=null
+		
+		
