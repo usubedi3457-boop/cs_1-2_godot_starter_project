@@ -16,7 +16,7 @@ func _on_body_entered(body):
 
 func _physics_process(_delta):
 	position += direction * speed * _delta
-
+															 
 func set_direction(target):
 	direction = position.direction_to(target)
 	

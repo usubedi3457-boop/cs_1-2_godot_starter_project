@@ -4,17 +4,17 @@
 [ext_resource type="Script" uid="uid://32dpc6fngqbj" path="res://scripts/switch.gd" id="1_ncfea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kcve"]
-size = Vector2(58, 51.125)
+size = Vector2(125, 81.5625)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_flenb"]
 atlas = ExtResource("1_iorl1")
 region = Rect2(81, 0, 81, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3341j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncfea"]
 atlas = ExtResource("1_iorl1")
 region = Rect2(0, 0, 81, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncfea"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3341j"]
 atlas = ExtResource("1_iorl1")
 region = Rect2(0, 0, 81, 64)
 
@@ -34,10 +34,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3341j")
+"texture": SubResource("AtlasTexture_ncfea")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ncfea")
+"texture": SubResource("AtlasTexture_3341j")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qxmkn")
@@ -52,11 +52,11 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ncfea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -26)
+position = Vector2(0, -42)
 shape = SubResource("RectangleShape2D_1kcve")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-40, -64)
+position = Vector2(-40, -66)
 sprite_frames = SubResource("SpriteFrames_3d23c")
 animation = &"on"
 centered = false
