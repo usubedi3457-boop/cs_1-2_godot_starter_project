@@ -12,10 +12,11 @@ var attack_timer = .67
 var current_enemy 
 var lever1 = false
 var lever2 = false
-var lever0= false
-var on 
+var lever3 = false
+var jewel = 0
 var nearby_levers = []
 var my_node
+var offset2 = Vector2(100,100)
 @export var offset : Vector2 = Vector2(0, -25)
 
 @onready var melee_box: Area2D = $melee
@@ -25,9 +26,7 @@ var maxHealth = 10
 var health = maxHealth
 
 func _ready():
-	if my_node != null:
-		$InteractionArea.body_entered.connect(_on_interaction_area_entered)
-		$InteractionArea.body_exited.connect(_on_interaction_area_exited)
+	pass
  	
 func _physics_process(_delta):
 	# TODO: Get horizontal input (left/right keys)
@@ -64,7 +63,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
 	
-	
+																  
 	if Input.is_action_just_pressed("ui_accept"):
 		is_attacking = true
 	
@@ -80,7 +79,6 @@ func _physics_process(_delta):
 		
 		
 	
-		
 	
 	
 	
@@ -118,9 +116,14 @@ func change_health(_amount:int):
 			health = maxHealth
 		print("Health: ", health)
 
+
+
 func change_coins(_amount:int):
 	coins += _amount
 	print("you have " +str(coins) +" coins")
+
+
+
 
 func die():
 	print("you died")
@@ -157,19 +160,3 @@ func _on_melee_body_exited(body: Node2D) -> void:
 		current_enemy=null
 		
 		
-
-func _input(event):
-	if event.is_action_pressed("lever_switch"):
-		for lever in nearby_levers:
-			if is_instance_valid(lever):
-			
-				lever._toggle_lever()
-
-func _on_interaction_area_entered(body: Node2D):
-	if body is Area2D and "Lever" in body.name:
-		nearby_levers.append(body)
-
-func _on_interaction_area_exited(body: Node2D):
-	if body is Area2D and "Lever" in body.name:
-		if nearby_levers.has(body):
-			nearby_levers.erase(body)

@@ -1,37 +1,58 @@
-extends Area2D
+extends Area2D 
 
-@export var door_to_open: NodePath
+@onready var activiation_range: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var animation_lever: AnimatedSprite2D = $AnimatedSprite2D
+var jewel_original = preload("res://scenes/jewel.tscn")
 
-var is_active = false
-var player_is_in_area = false
+var in_range = false 
+@onready var player: CharacterBody2D = %Player
 
-@onready var sprite = $Sprite2D
-
-func _ready():
+func _ready() -> void:
+	animation_lever.play("off")
 	
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-
-
-func _on_body_entered(body: Node2D):
 	
-	if body.is_in_group("player"):
-		player_is_in_area = true
-
-
-func _on_body_exited(body: Node2D):
-	if body.is_in_group("player"):
-		player_is_in_area = false
-
-
-func _toggle_lever():
-	is_active = not is_active
-	
-	if is_active:
+func _process(_delta):
+	if Input.is_action_just_pressed("lever_switch") and in_range:
 		
-		sprite.texture = preload("res://scenes/lever.tscn::AtlasTexture_qxmkn")
-		print("Lever is ON")
-	else:
-		
-		sprite.texture = preload("res://scenes/lever.tscn::AtlasTexture_3341j")
-		print("Lever is OFF")
+		if name== "Lever":
+			if !player.lever1:
+				animation_lever.play("on")
+				player.lever1 = true
+				
+			else: 
+				animation_lever.play("off")
+				player.lever1 = false 
+				
+		if name == "Lever2":
+			if !player.lever2:
+				animation_lever.play("on")
+				player.lever2 = true
+				
+			else:
+				animation_lever.play("off")
+				player.lever2 = false 
+				
+		if name == "Lever3":
+			if !player.lever3:
+				animation_lever.play("on")
+				player.lever3 = true
+				
+			else:
+				animation_lever.play("off")
+				player.lever3 = false 
+	
+	if player.lever1 and player.lever2 and player.lever3:
+	
+		var jewel = jewel_original.instantiate()
+		# TODO: Set projectile position to player position
+		jewel.global_position = position + Vector2(100, 200)
+
+		get_tree().get_root().add_child(jewel)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		in_range = true
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		in_range = false

@@ -1,0 +1,20 @@
+extends Area2D
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	pass
+	# TODO: Check if the object that touched the coin is the player
+	if body.name == "player":
+		body.change_coins(5)
+		queue_free()
+		print("5 coins collected")
+	
+	
+	# TODO: Print a message when the coin is collected
+	
+	
+	
+	# TODO: Remove the coin from the game
+	
