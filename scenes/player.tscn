@@ -880,7 +880,7 @@ shape = SubResource("CircleShape2D_ptgn0")
 
 [node name="melee" type="Area2D" parent="." groups=["enemy"]]
 
-[node name="player meleebox" type="CollisionShape2D" parent="melee" groups=["enemy"]]
+[node name="player meleebox" type="CollisionShape2D" parent="melee" groups=["player"]]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_qhqgy")
 

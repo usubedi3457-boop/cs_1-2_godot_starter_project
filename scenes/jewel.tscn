@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://wb7pdbmrd3lo"]
+[gd_scene load_steps=6 format=3 uid="uid://wb7pdbmrd3lo"]
 
 [ext_resource type="Texture2D" uid="uid://d01wkmk0do07b" path="res://sprites/jewel.png" id="1_12jsq"]
+[ext_resource type="Script" uid="uid://hfohfqgp63g8" path="res://jewel.gd" id="1_qpqm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpqm8"]
 atlas = ExtResource("1_12jsq")
@@ -20,6 +21,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2u2i"]
 
 [node name="jewel" type="Area2D"]
+script = ExtResource("1_qpqm8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n8amn")

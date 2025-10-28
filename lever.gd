@@ -3,7 +3,7 @@ extends Area2D
 @onready var activiation_range: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var animation_lever: AnimatedSprite2D = $AnimatedSprite2D
 var jewel_original = preload("res://scenes/jewel.tscn")
-
+var jewel_created
 var in_range = false 
 @onready var player: CharacterBody2D = %Player
 
@@ -41,11 +41,11 @@ func _process(_delta):
 				animation_lever.play("off")
 				player.lever3 = false 
 	
-	if player.lever1 and player.lever2 and player.lever3:
+	if player.lever1 and player.lever2 and player.lever3 and !jewel_created:
 	
 		var jewel = jewel_original.instantiate()
-		# TODO: Set projectile position to player position
-		jewel.global_position = position + Vector2(100, 200)
+		jewel_created = true
+		jewel.global_position = position + Vector2(-13, 27)
 
 		get_tree().get_root().add_child(jewel)
 

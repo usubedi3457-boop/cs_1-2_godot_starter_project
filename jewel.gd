@@ -6,10 +6,9 @@ func _ready() -> void:
 func _on_body_entered(body):
 	pass
 	# TODO: Check if the object that touched the coin is the player
-	if body.name == "player":
+	if body.name == "Player":
 		body.change_coins(5)
 		queue_free()
-		print("5 coins collected")
 	
 	
 	# TODO: Print a message when the coin is collected
@@ -17,4 +16,5 @@ func _on_body_entered(body):
 	
 	
 	# TODO: Remove the coin from the game
+	
 	

@@ -9,7 +9,7 @@ var yDirection = 0
 var coins = 0
 var is_attacking = false
 var attack_timer = .67
-var current_enemy 
+var current_enemy = null 
 var lever1 = false
 var lever2 = false
 var lever3 = false
@@ -66,6 +66,8 @@ func _physics_process(_delta):
 																  
 	if Input.is_action_just_pressed("ui_accept"):
 		is_attacking = true
+		attack_timer = .67
+		print("attack")
 	
 	if is_attacking:
 		attack_timer -= _delta
@@ -74,7 +76,7 @@ func _physics_process(_delta):
 			attack_timer = .67
 	
 	if current_enemy != null and is_attacking: 
-		print ("attack")
+		print ("hit")
 		current_enemy.queue_free()
 		
 		
@@ -121,6 +123,8 @@ func change_health(_amount:int):
 func change_coins(_amount:int):
 	coins += _amount
 	print("you have " +str(coins) +" coins")
+	
+	
 
 
 
@@ -158,5 +162,6 @@ func _on_melee_body_exited(body: Node2D) -> void:
 	pass 
 	if body.is_in_group("enemy"):
 		current_enemy=null
+		
 		
 		
