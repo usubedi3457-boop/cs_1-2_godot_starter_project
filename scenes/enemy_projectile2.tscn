@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxaxnn0r6xixl"]
+
+[ext_resource type="Script" uid="uid://4vaiyqbx80xg" path="res://scripts/melee_minotaur.gd" id="1_qfmfb"]
+[ext_resource type="Texture2D" uid="uid://dh32p744wpt4y" path="res://sprites/items/arrow.png" id="2_2goke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3g2m"]
+size = Vector2(27.500011, 35.625015)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf1n6"]
+atlas = ExtResource("2_2goke")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saxa4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf1n6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy_arrow" type="Area2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_qfmfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(44.999992, -7.8124957)
+scale = Vector2(0.9999994, 0.9999994)
+shape = SubResource("RectangleShape2D_u3g2m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.9999998, 3.9999998)
+sprite_frames = SubResource("SpriteFrames_saxa4")
+autoplay = "default"
+frame_progress = 0.0100144
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

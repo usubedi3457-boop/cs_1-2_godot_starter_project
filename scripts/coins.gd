@@ -18,3 +18,4 @@ func _on_body_entered(body):
 	# TODO: Remove the coin from the game
 	
 	
+				

@@ -8,15 +8,19 @@ var chasing = false
 var projectile_original = preload("res://scenes/enemy_projectile.tscn")
 
 func _process(delta: float) -> void:
-	pass
-
-
+	if chasing and !attacking:
+		pass
+	
+	if !in_range and chasing:
+		print("chasing, not in range")
+	
 
 func _on_melee_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		attacking = true 
 		chasing = false 
-	   
+	  
+	
 
 func _on_melee_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
@@ -26,18 +30,20 @@ func _on_melee_body_exited(body: Node2D) -> void:
 
 func _on_chase_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		pass
+		chasing = true
+		attacking = false
 
 func _on_chase_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		pass
+		chasing = false
 
 
 func _on_ranged_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		pass
+		in_range = true
+		attacking = false
 
 
 func _on_ranged_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		pass
+		in_range = false

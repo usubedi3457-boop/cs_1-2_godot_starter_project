@@ -24,3 +24,4 @@ func _process(delta: float) -> void:
 	timer -= delta 
 	if timer <0:
 		queue_free()
+		
