@@ -1,7 +1,7 @@
 [gd_scene load_steps=133 format=3 uid="uid://ddq1bkyn8j1by"]
 
 [ext_resource type="Texture2D" uid="uid://busa5myjbwb4i" path="res://sprites/Download38899.png" id="1_nohjn"]
-[ext_resource type="Script" uid="uid://di404qslpnp8m" path="res://scenes/melee_minotaur.gd" id="1_vltjp"]
+[ext_resource type="Script" uid="uid://4vaiyqbx80xg" path="res://scripts/melee_minotaur.gd" id="1_vltjp"]
 [ext_resource type="Texture2D" uid="uid://dqoamfql4kdnq" path="res://sprites/Download19204.png" id="2_7o3s3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgyv5"]
@@ -1023,7 +1023,6 @@ frame = 7
 frame_progress = 0.985295
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
-visible = false
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_vltjp")
 

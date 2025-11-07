@@ -30,7 +30,7 @@ position = Vector2(44.999992, -7.8124957)
 scale = Vector2(0.9999994, 0.9999994)
 shape = SubResource("RectangleShape2D_u3g2m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="arrow" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3.9999998, 3.9999998)
 sprite_frames = SubResource("SpriteFrames_saxa4")
 autoplay = "default"
