@@ -8,8 +8,17 @@ var chasing = false
 var projectile_original = preload("res://scenes/enemy_projectile.tscn")
 
 func _process(delta: float) -> void:
-	if chasing and !attacking:
+	if in_range:
 		pass
+	elif chasing and !attacking:
+		velocity = Vector2.ZERO
+		Direction = position.direction_to(player.position)
+		
+	elif !chasing and !attacking:
+		pass
+		
+	if chasing == true:
+		position =+ direction * delta * speed attacking
 	
 	if !in_range and chasing:
 		print("chasing, not in range")
