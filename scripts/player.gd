@@ -163,5 +163,3 @@ func _on_melee_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		current_enemy=null
 		
-		
-		

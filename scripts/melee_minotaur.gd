@@ -7,29 +7,24 @@ var chasing = false
 var direction = Vector2(0,0)
 var start_time = 1
 var timer =  start_time
-var _direction = Vector2.ZERO
+
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
 
 	
 @onready var player: CharacterBody2D = %Player
 var projectile_original = preload("res://scenes/enemy_projectile2.tscn")
 
-
-
-func _ready():
-	pass
-
-func set_direction(new_direction: Vector2):
-	_direction = new_direction
-
-	
-
-
 func _process(delta: float) -> void:
-	
+	if direction:
+		anim.flip_h = true
+	else:
+		anim.flip_h = false
+
 	if in_range:
 		timer -= delta
 	if timer < 0:
-		shoot()
+		shoot(player)
 		timer = start_time
 	
 		pass
@@ -85,14 +80,14 @@ func _on_ranged_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		in_range = false
 
-func shoot():
+func shoot(player):
 	# TODO: Create a new projectile instance
 	var projectile_clone = projectile_original.instantiate()
 	
 	# TODO: Set projectile position to player position
 	projectile_clone.global_position = position 
 	
-	# TODO: Set projectile direction using facing variable
+	# TODO: Set projectile direction using facing variable 
 	projectile_clone.set_direction(player.position)
 	
 	# TODO: Add projectile to the game world
