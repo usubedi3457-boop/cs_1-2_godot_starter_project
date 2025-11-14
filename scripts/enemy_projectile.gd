@@ -4,6 +4,10 @@ var timer = start_time
 var direction
 var speed= 300
 var player
+var maxHealth = 10
+var health = 10
+@onready var arrow: AnimatedSprite2D = $arrow
+
 
 func _ready() -> void:
 	pass
@@ -11,14 +15,15 @@ func _ready() -> void:
 	
 func _on_body_entered(body):
 	if body.name == "Player":
-		body.change_health(-1)
+		body.change_health(-2)
 		queue_free()
 		
 		pass
 	
 func _physics_process(_delta):
-	position += direction * speed * _delta 
-	
+
+		position += direction * speed * _delta 
+		
 func set_direction(target):
 	direction = position.direction_to(target)
 	
@@ -26,4 +31,15 @@ func _process(delta: float) -> void:
 	timer -= delta 
 	if timer <0:
 		queue_free()
+		
+func change_health(_amount:int):
+		health += _amount
+		if health < 1:
+			queue_free()
+		if health > maxHealth:
+			health = maxHealth
+		print("Health: ", health)
+
+
+		
 		

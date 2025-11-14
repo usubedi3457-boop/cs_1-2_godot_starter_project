@@ -17,17 +17,21 @@ var jewel = 0
 var nearby_levers = []
 var my_node
 var offset2 = Vector2(100,100)
+
 @export var offset : Vector2 = Vector2(0, -25)
 
 @onready var melee_box: Area2D = $melee
+
 
 # TODO: Add health system variables
 var maxHealth = 10
 var health = maxHealth
 
 func _ready():
+
 	pass
  	
+	
 func _physics_process(_delta):
 	# TODO: Get horizontal input (left/right keys)
 	# Input.get_axis checks two keys and gives us a number:

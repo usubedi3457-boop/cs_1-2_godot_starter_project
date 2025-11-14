@@ -40,14 +40,15 @@ func _process(_delta):
 			else:
 				animation_lever.play("off")
 				player.lever3 = false 
-	
-	if player.lever1 and player.lever2 and player.lever3 and !jewel_created:
-	
-		var jewel = jewel_original.instantiate()
-		jewel_created = true
-		jewel.global_position = position + Vector2(-13, 27)
+				
+	if player != null:
+		if player.lever1 and player.lever2 and player.lever3 and !jewel_created:
+		
+			var jewel = jewel_original.instantiate()
+			jewel_created = true
+			jewel.global_position = position + Vector2(-13, 27)
 
-		get_tree().get_root().add_child(jewel)
+			get_tree().get_root().add_child(jewel)
 
 
 func _on_body_entered(body: Node2D) -> void:
